@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cat photo gallery</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: beige;
+    margin: 0;
+    padding: 0;
+  }
+  .titlebar {
+    text-align: center;
+    margin: 20px 0;
+  }
+  .container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    padding: 20px;
+  }
+  .gallery-item img {
+    width: auto;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .blog-section {
+    margin-top: 40px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .blog-section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .blog-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .blog-section input, .blog-section textarea {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .blog-section textarea {
+    resize: vertical;
+  }
+  .blog-section button {
+    align-self: center;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .blog-section button:hover {
+    background-color: #0056b3;
+  }
+
+.notes-section {
+  overflow-y: auto;
+  max-height: 400px;
+}
+
+.note {
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #ffe5e5, #fff2f2);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1), -5px -5px 10px rgba(255, 255, 255, 0.9);
+  border: 1px solid #f5c5c5;
+}
+
+.note h1,h2,h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #d76a6a;
+  font-family: 'Comic Sans MS', cursive, sans-serif; /* Cute font effect */
+}
+
+.note p {
+  margin: 5px 0 0;
+  font-size: 16px;
+  color: #3c3c3c;
+  line-height: 1.5;
+  font-family: Arial, sans-serif;
+}
+
+</style>
+<body> 
+
+  <div class="titlebar">
+    <h1>Cat Photo Gallery</h1>
+  </div>
+  
+  <div class="container">
+    <div class="gallery-item">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Cat_August_2010-4.jpg" alt="grey cat">
+    </div>
+    <div class="gallery-item">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/68/Orange_tabby_cat_sitting_on_fallen_leaves-Hisashi-01A.jpg" alt="Sky cat">
+    </div>
+    <div class="gallery-item">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Sheba1.JPG" alt="Sheba1">
+    </div>
+    <div class="gallery-item">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Siam_lilacpoint.jpg" alt="Siam lilac point cat">
+    </div>
+  </div>
+
+  <div class="blog-container">
+    <div class="blog-section">
+      <h2>Share Your Thoughts</h2>
+      <form id="blogForm">
+        <input type="text" id="name" name="name" placeholder="Your Name" required>
+        <textarea id="notes" name="notes" placeholder="Your Notes" rows="5" required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+    <div class="notes-section">
+      <h2>Notes</h2>
+      <div id="notesContainer"></div>
+    </div>
+  </div>
+
+  <script>
+    const blogForm = document.getElementById('blogForm');
+    const notesContainer = document.getElementById('notesContainer');
+
+    blogForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const notes = document.getElementById('notes').value.trim();
+
+      if (name && notes) {
+        const note = document.createElement('div');
+        note.classList.add('note');
+        note.innerHTML = `<h3>${name}</h3><p>${notes}</p>`;
+        notesContainer.appendChild(note);
+        blogForm.reset();
+      }
+    });
+  </script>
+</body>
+</html>
